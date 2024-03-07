@@ -1,9 +1,9 @@
 name: Build and Release
 
 on:
-  push:
+  pull_request:
     branches:
-      - main  # Adjust this to your default branch
+      - release  # Adjust this to your default branch
 
 jobs:
   build:
