@@ -1,14 +1,12 @@
 # C-Sharp SFTP Client
-A very basic C# client that lets you connect to an SFTP server to download or upload files. This requires that the remote server has SFTP set up.
+A very basic C# client that lets you connect to an SFTP server to download or upload files. This requires that the remote server has SFTP set up, and that you are running .Net.
 <br>
-I will be updating this eventually to make the front-end look more modern and take input params, instead of having the info changed in the code.
-<br>
-This solution currently only serves as a code-sample of how to connect to an SFTP site, using the front-end as-is is not recommended.
+The front-end now allows you to insert your own variable details to upload and download files as needed. This application does not save or store any information (as can be seen from the actual source code in this repository)
 <br></br>
 ## Note:
 Actual functionality code can be found in the "Form1.cs" file
 <br>
-There is a dependency mentioned in the code - this is a 3rd party library called Renci SSH .net
+There is a dependency mentioned in the code - this is a 3rd party library called Renci SSH .net which allows us to connect via SFTP
 
 ## How to connect to an SFTP site without code:
 Firstly, Your remote server needs to have SFTP and SSH enabled.
