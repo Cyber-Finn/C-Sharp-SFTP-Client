@@ -49,6 +49,8 @@
             txtboxUsername = new TextBox();
             label5 = new Label();
             label4 = new Label();
+            label8 = new Label();
+            txtboxRemoteHost = new TextBox();
             tabControlUI.SuspendLayout();
             tabPageUpload.SuspendLayout();
             tabPageDownload.SuspendLayout();
@@ -67,7 +69,7 @@
             // 
             // txtResult
             // 
-            txtResult.Location = new Point(12, 453);
+            txtResult.Location = new Point(13, 533);
             txtResult.Margin = new Padding(4);
             txtResult.Name = "txtResult";
             txtResult.Size = new Size(611, 169);
@@ -77,7 +79,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 424);
+            label1.Location = new Point(13, 504);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(59, 25);
@@ -88,7 +90,7 @@
             // 
             tabControlUI.Controls.Add(tabPageUpload);
             tabControlUI.Controls.Add(tabPageDownload);
-            tabControlUI.Location = new Point(12, 129);
+            tabControlUI.Location = new Point(13, 209);
             tabControlUI.Name = "tabControlUI";
             tabControlUI.SelectedIndex = 0;
             tabControlUI.Size = new Size(615, 267);
@@ -124,6 +126,7 @@
             // 
             txtboxRemoteFolder.Location = new Point(176, 79);
             txtboxRemoteFolder.Name = "txtboxRemoteFolder";
+            txtboxRemoteFolder.PlaceholderText = "remote folder to upload to";
             txtboxRemoteFolder.Size = new Size(269, 31);
             txtboxRemoteFolder.TabIndex = 6;
             // 
@@ -131,6 +134,7 @@
             // 
             txtboxSourceFile.Location = new Point(176, 20);
             txtboxSourceFile.Name = "txtboxSourceFile";
+            txtboxSourceFile.PlaceholderText = "file to upload";
             txtboxSourceFile.Size = new Size(269, 31);
             txtboxSourceFile.TabIndex = 5;
             // 
@@ -192,6 +196,7 @@
             // 
             txtboxLocalDestination.Location = new Point(176, 83);
             txtboxLocalDestination.Name = "txtboxLocalDestination";
+            txtboxLocalDestination.PlaceholderText = "folder to save to";
             txtboxLocalDestination.Size = new Size(269, 31);
             txtboxLocalDestination.TabIndex = 3;
             // 
@@ -208,6 +213,7 @@
             // 
             txtboxRemoteSource.Location = new Point(176, 25);
             txtboxRemoteSource.Name = "txtboxRemoteSource";
+            txtboxRemoteSource.PlaceholderText = "this folder shouldn't end with \"\\\"";
             txtboxRemoteSource.Size = new Size(269, 31);
             txtboxRemoteSource.TabIndex = 1;
             // 
@@ -253,12 +259,31 @@
             label4.TabIndex = 8;
             label4.Text = "Username:";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(45, 139);
+            label8.Name = "label8";
+            label8.Size = new Size(117, 25);
+            label8.TabIndex = 12;
+            label8.Text = "Remote host:";
+            // 
+            // txtboxRemoteHost
+            // 
+            txtboxRemoteHost.Location = new Point(192, 139);
+            txtboxRemoteHost.Name = "txtboxRemoteHost";
+            txtboxRemoteHost.Size = new Size(269, 31);
+            txtboxRemoteHost.TabIndex = 13;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(641, 650);
+            ClientSize = new Size(640, 741);
+            Controls.Add(txtboxRemoteHost);
+            Controls.Add(label8);
             Controls.Add(txtboxPassword);
             Controls.Add(txtboxUsername);
             Controls.Add(tabControlUI);
@@ -267,6 +292,7 @@
             Controls.Add(label4);
             Controls.Add(label1);
             Margin = new Padding(4);
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Stephen Simple SFTP client";
             tabControlUI.ResumeLayout(false);
@@ -301,5 +327,7 @@
         private Label label6;
         private Button btnDownloadFile;
         private Button button1;
+        private Label label8;
+        private TextBox txtboxRemoteHost;
     }
 }

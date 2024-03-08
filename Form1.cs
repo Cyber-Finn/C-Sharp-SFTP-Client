@@ -29,24 +29,47 @@ public partial class Form1 : Form
         InitializeComponent();
     }
 
-    private bool ValidateDetails()
+    private bool ValidateDetails(int operationID)
     {
-        if (!string.IsNullOrWhiteSpace(txtboxSourceFile.Text) && !string.IsNullOrWhiteSpace(txtboxRemoteFolder.Text) && !string.IsNullOrWhiteSpace(txtboxUsername.Text) && !string.IsNullOrWhiteSpace(txtboxPassword.Text))
+        if (operationID == 0)
         {
-            //load the user's paths and creds
-            _pathOfFile = txtboxSourceFile.Text;
-            _sftpDataInPath = txtboxRemoteFolder.Text;
-            _myUser = txtboxUsername.Text;
-            _myPassword = txtboxPassword.Text;
+            if (!string.IsNullOrWhiteSpace(txtboxSourceFile.Text) && !string.IsNullOrWhiteSpace(txtboxRemoteFolder.Text) && !string.IsNullOrWhiteSpace(txtboxUsername.Text) && !string.IsNullOrWhiteSpace(txtboxPassword.Text))
+            {
+                txtResult.Text = "Loaded details OK";
 
-            return true;
+                //load the user's paths and creds
+                _pathOfFile = txtboxSourceFile.Text;
+                _sftpDataInPath = txtboxRemoteFolder.Text;
+                _myUser = txtboxUsername.Text;
+                _myPassword = txtboxPassword.Text;
+
+                _myServer = txtboxRemoteHost.Text;
+
+                return true;
+            }
         }
+        if (operationID == 1)
+        {
+            if (!string.IsNullOrWhiteSpace(txtboxRemoteSource.Text) && !string.IsNullOrWhiteSpace(txtboxLocalDestination.Text) && !string.IsNullOrWhiteSpace(txtboxUsername.Text) && !string.IsNullOrWhiteSpace(txtboxPassword.Text))
+            {
+                txtResult.Text = "Loaded details OK";
+
+                //load the user's paths and creds
+                _myUser = txtboxUsername.Text;
+                _myPassword = txtboxPassword.Text;
+
+                _myServer = txtboxRemoteHost.Text;
+
+                return true;
+            }
+        }
+
         return false;
     }
 
     private void UploadFileToServer_Click(object sender, EventArgs e)
     {
-        if (ValidateDetails())
+        if (ValidateDetails(0))
         {
             //only attempt to send to remote server once the folders and user credentials are loaded (SFTP requires creds)
             SendDataToSFTPServer();
@@ -73,13 +96,13 @@ public partial class Form1 : Form
                     }
                     #endregion upload files to remote server
 
-                    txtResult.Text = "Uploaded Successfully. Name: " + name.ToString();
+                    txtResult.Text += "Uploaded Successfully. Name: " + name.ToString();
                 }
             }
         }
         catch (Exception ex)
         {
-            txtResult.Text = ex.Message;
+            txtResult.Text += ex.Message;
         }
     }
 
@@ -95,6 +118,7 @@ public partial class Form1 : Form
                 sftp.Connect();
                 if (sftp.IsConnected)
                 {
+                    txtResult.Text += "\r\nConnected to remote host.";
                     #region download the files from the remote server
 
                     var files = sftp.ListDirectory(txtboxRemoteSource.Text);
@@ -111,13 +135,18 @@ public partial class Form1 : Form
 
                             if (System.IO.File.Exists(_finalDir + file.Name))
                             {
-                                MessageBox.Show("File already exists!");
+                                MessageBox.Show("File already exists in local directory!");
                             }
                             else
                             {
+                                if (remoteFileName.Substring(0, 2) == "./")
+                                    remoteFileName = remoteFileName.Replace("./", "");
+
+                                System.IO.File.Create(_finalDir + remoteFileName).Close();
+
                                 using (Stream file1 = System.IO.File.OpenWrite(_finalDir + remoteFileName))
                                 {
-                                    sftp.DownloadFile(_remoteDirectory + remoteFileName, file1);
+                                    sftp.DownloadFile(txtboxRemoteSource.Text + "\\" + remoteFileName, file1);
                                     txtResult.Text += "\r\nDownloaded successfully. Name: " + remoteFileName.ToString();
                                 }
                             }
@@ -129,7 +158,7 @@ public partial class Form1 : Form
         }
         catch (Exception ex) 
         {
-            txtResult.Text = ex.Message;
+            txtResult.Text += ex.Message;
         }
     }
     private void OpenSourceFileDialog_Click(object sender, EventArgs e)
@@ -145,7 +174,7 @@ public partial class Form1 : Form
             }
             catch (Exception ex)
             {
-                txtResult.Text = $"Error with source file: {ex.Message}";
+                txtResult.Text += $"Error with source file: {ex.Message}";
             }
         }
 
@@ -164,16 +193,16 @@ public partial class Form1 : Form
             }
             catch (Exception ex)
             {
-                txtResult.Text = $"Error with source file: {ex.Message}";
+                txtResult.Text += $"Error with source file: {ex.Message}";
             }
         }
     }
 
     private void btnDownloadFile_Click(object sender, EventArgs e)
     {
-        if (ValidateDetails() && !string.IsNullOrWhiteSpace(txtboxLocalDestination.Text))
+        if (ValidateDetails(1))
         {
-            _localDirectory = txtboxLocalDestination.Text;
+            _localDirectory = txtboxLocalDestination.Text + "\\";
             DownloadFilesFromSFTPServer();
         }
         else
