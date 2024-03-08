@@ -1,0 +1,50 @@
+name: Build and Release
+
+on:
+  pull_request:
+    branches:
+      - release  # Adjust this to your default branch
+
+jobs:
+  build:
+    runs-on: windows-latest #changing from ubuntu-latest to target windows specifically 
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'  # Adjust to your desired .NET version
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Test (optional)
+        run: dotnet test
+
+      - name: Package executable
+        run: dotnet publish -c Release -o ./publish
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v1.0.0  # Adjust to your desired version
+          release_name: Release v1.0.0
+          body: |
+            This release includes the C# executable.
+          draft: false
+          prerelease: false
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-app
+          path: ./publish
