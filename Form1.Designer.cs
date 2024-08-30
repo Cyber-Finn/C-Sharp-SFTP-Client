@@ -51,6 +51,8 @@
             label4 = new Label();
             label8 = new Label();
             txtboxRemoteHost = new TextBox();
+            btnTestConn = new Button();
+            lblConnStatus = new Label();
             tabControlUI.SuspendLayout();
             tabPageUpload.SuspendLayout();
             tabPageDownload.SuspendLayout();
@@ -275,6 +277,24 @@
             txtboxRemoteHost.Size = new Size(269, 31);
             txtboxRemoteHost.TabIndex = 13;
             // 
+            // btnTestConn
+            // 
+            btnTestConn.Location = new Point(482, 22);
+            btnTestConn.Name = "btnTestConn";
+            btnTestConn.Size = new Size(112, 34);
+            btnTestConn.TabIndex = 14;
+            btnTestConn.Text = "Test";
+            btnTestConn.UseVisualStyleBackColor = true;
+            btnTestConn.Click += btnTestConn_Click;
+            // 
+            // lblConnStatus
+            // 
+            lblConnStatus.AutoSize = true;
+            lblConnStatus.Location = new Point(482, 78);
+            lblConnStatus.Name = "lblConnStatus";
+            lblConnStatus.Size = new Size(0, 25);
+            lblConnStatus.TabIndex = 15;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -282,6 +302,8 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(640, 741);
+            Controls.Add(lblConnStatus);
+            Controls.Add(btnTestConn);
             Controls.Add(txtboxRemoteHost);
             Controls.Add(label8);
             Controls.Add(txtboxPassword);
@@ -294,7 +316,7 @@
             Margin = new Padding(4);
             MaximizeBox = false;
             Name = "Form1";
-            Text = "Stephen Simple SFTP client";
+            Text = "CyberFinn Simple SFTP client";
             tabControlUI.ResumeLayout(false);
             tabPageUpload.ResumeLayout(false);
             tabPageUpload.PerformLayout();
@@ -329,5 +351,7 @@
         private Button button1;
         private Label label8;
         private TextBox txtboxRemoteHost;
+        private Button btnTestConn;
+        private Label lblConnStatus;
     }
 }

@@ -33,7 +33,7 @@ public partial class Form1 : Form
     {
         if (operationID == 0)
         {
-            if (!string.IsNullOrWhiteSpace(txtboxSourceFile.Text) && !string.IsNullOrWhiteSpace(txtboxRemoteFolder.Text) && !string.IsNullOrWhiteSpace(txtboxUsername.Text) && !string.IsNullOrWhiteSpace(txtboxPassword.Text))
+            if (!string.IsNullOrWhiteSpace(txtboxSourceFile.Text) && !string.IsNullOrWhiteSpace(txtboxRemoteFolder.Text) && !string.IsNullOrWhiteSpace(txtboxUsername.Text) && !string.IsNullOrWhiteSpace(txtboxPassword.Text) && !string.IsNullOrWhiteSpace(txtboxRemoteHost.Text))
             {
                 txtResult.Text = "Loaded details OK";
 
@@ -50,7 +50,23 @@ public partial class Form1 : Form
         }
         if (operationID == 1)
         {
-            if (!string.IsNullOrWhiteSpace(txtboxRemoteSource.Text) && !string.IsNullOrWhiteSpace(txtboxLocalDestination.Text) && !string.IsNullOrWhiteSpace(txtboxUsername.Text) && !string.IsNullOrWhiteSpace(txtboxPassword.Text))
+            if (!string.IsNullOrWhiteSpace(txtboxRemoteHost.Text) && !string.IsNullOrWhiteSpace(txtboxLocalDestination.Text) && !string.IsNullOrWhiteSpace(txtboxUsername.Text) && !string.IsNullOrWhiteSpace(txtboxPassword.Text))
+            {
+                txtResult.Text = "Loaded details OK";
+
+                //load the user's paths and creds
+                _myUser = txtboxUsername.Text;
+                _myPassword = txtboxPassword.Text;
+                _localDirectory = txtboxLocalDestination.Text;
+
+                _myServer = txtboxRemoteHost.Text;
+
+                return true;
+            }
+        }
+        if (operationID == 2)
+        {
+            if (!string.IsNullOrWhiteSpace(txtboxRemoteHost.Text) && !string.IsNullOrWhiteSpace(txtboxUsername.Text) && !string.IsNullOrWhiteSpace(txtboxPassword.Text))
             {
                 txtResult.Text = "Loaded details OK";
 
@@ -96,16 +112,37 @@ public partial class Form1 : Form
                     }
                     #endregion upload files to remote server
 
-                    txtResult.Text += "Uploaded Successfully. Name: " + name.ToString();
+                    txtResult.Text += "Uploaded Successfully. Name: " + name.ToString() + "\r\n";
                 }
             }
         }
         catch (Exception ex)
         {
-            txtResult.Text += ex.Message;
+            txtResult.Text += "\r\n" + ex.Message;
         }
     }
 
+    private void TestConnection()
+    {
+        try
+        {
+            //this SftpClient is coming from our Renci dependency
+            using (SftpClient sftp = new SftpClient(_myServer, _myPort, _myUser, _myPassword))
+            {
+                sftp.Connect();
+                if (sftp.IsConnected)
+                {
+                    lblConnStatus.Text = "Success";
+                    return;
+                }
+            }
+            lblConnStatus.Text = "Failed";
+        }
+        catch (Exception e)
+        {
+            txtResult.Text = e.Message;
+        }
+    }
 
     private void DownloadFilesFromSFTPServer()
     {
@@ -156,9 +193,9 @@ public partial class Form1 : Form
                 }
             }
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
-            txtResult.Text += ex.Message;
+            txtResult.Text += "\r\n" + ex.Message;
         }
     }
     private void OpenSourceFileDialog_Click(object sender, EventArgs e)
@@ -207,6 +244,17 @@ public partial class Form1 : Form
         }
         else
             txtResult.Text = "Missing details. Unable to perform action";
-        
+
+    }
+
+    private void btnTestConn_Click(object sender, EventArgs e)
+    {
+        lblConnStatus.Text = "Testing";
+        if(ValidateDetails(2))
+        {
+            TestConnection();
+            return;
+        }
+        lblConnStatus.Text = "Failed";
     }
 }
