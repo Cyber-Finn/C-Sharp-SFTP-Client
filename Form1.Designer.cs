@@ -28,209 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnUploadFile = new Button();
-            txtResult = new RichTextBox();
-            label1 = new Label();
-            tabControlUI = new TabControl();
-            tabPageUpload = new TabPage();
-            btnOpenFileDialog = new Button();
-            txtboxRemoteFolder = new TextBox();
-            txtboxSourceFile = new TextBox();
-            label3 = new Label();
-            label2 = new Label();
-            tabPageDownload = new TabPage();
-            button1 = new Button();
-            btnDownloadFile = new Button();
-            txtboxLocalDestination = new TextBox();
-            label7 = new Label();
-            txtboxRemoteSource = new TextBox();
-            label6 = new Label();
             txtboxPassword = new TextBox();
             txtboxUsername = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label8 = new Label();
             txtboxRemoteHost = new TextBox();
-            btnTestConn = new Button();
             lblConnStatus = new Label();
-            tabControlUI.SuspendLayout();
-            tabPageUpload.SuspendLayout();
-            tabPageDownload.SuspendLayout();
+            btnUploadFiles = new Button();
+            btnDownloadFiles = new Button();
+            label1 = new Label();
+            txtPort = new TextBox();
+            txtPrivatekeyLocation = new TextBox();
+            label6 = new Label();
             SuspendLayout();
-            // 
-            // btnUploadFile
-            // 
-            btnUploadFile.Location = new Point(217, 147);
-            btnUploadFile.Margin = new Padding(4);
-            btnUploadFile.Name = "btnUploadFile";
-            btnUploadFile.Size = new Size(184, 43);
-            btnUploadFile.TabIndex = 0;
-            btnUploadFile.Text = "Upload";
-            btnUploadFile.UseVisualStyleBackColor = true;
-            btnUploadFile.Click += UploadFileToServer_Click;
-            // 
-            // txtResult
-            // 
-            txtResult.Location = new Point(13, 533);
-            txtResult.Margin = new Padding(4);
-            txtResult.Name = "txtResult";
-            txtResult.Size = new Size(611, 169);
-            txtResult.TabIndex = 1;
-            txtResult.Text = "";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(13, 504);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(59, 25);
-            label1.TabIndex = 2;
-            label1.Text = "Result";
-            // 
-            // tabControlUI
-            // 
-            tabControlUI.Controls.Add(tabPageUpload);
-            tabControlUI.Controls.Add(tabPageDownload);
-            tabControlUI.Location = new Point(13, 209);
-            tabControlUI.Name = "tabControlUI";
-            tabControlUI.SelectedIndex = 0;
-            tabControlUI.Size = new Size(615, 267);
-            tabControlUI.TabIndex = 3;
-            // 
-            // tabPageUpload
-            // 
-            tabPageUpload.Controls.Add(btnOpenFileDialog);
-            tabPageUpload.Controls.Add(txtboxRemoteFolder);
-            tabPageUpload.Controls.Add(txtboxSourceFile);
-            tabPageUpload.Controls.Add(label3);
-            tabPageUpload.Controls.Add(label2);
-            tabPageUpload.Controls.Add(btnUploadFile);
-            tabPageUpload.Location = new Point(4, 34);
-            tabPageUpload.Name = "tabPageUpload";
-            tabPageUpload.Padding = new Padding(3);
-            tabPageUpload.Size = new Size(607, 229);
-            tabPageUpload.TabIndex = 0;
-            tabPageUpload.Text = "Upload Files";
-            tabPageUpload.UseVisualStyleBackColor = true;
-            // 
-            // btnOpenFileDialog
-            // 
-            btnOpenFileDialog.Location = new Point(451, 20);
-            btnOpenFileDialog.Name = "btnOpenFileDialog";
-            btnOpenFileDialog.Size = new Size(106, 31);
-            btnOpenFileDialog.TabIndex = 7;
-            btnOpenFileDialog.Text = "Open";
-            btnOpenFileDialog.UseVisualStyleBackColor = true;
-            btnOpenFileDialog.Click += OpenSourceFileDialog_Click;
-            // 
-            // txtboxRemoteFolder
-            // 
-            txtboxRemoteFolder.Location = new Point(176, 79);
-            txtboxRemoteFolder.Name = "txtboxRemoteFolder";
-            txtboxRemoteFolder.PlaceholderText = "remote folder to upload to";
-            txtboxRemoteFolder.Size = new Size(269, 31);
-            txtboxRemoteFolder.TabIndex = 6;
-            // 
-            // txtboxSourceFile
-            // 
-            txtboxSourceFile.Location = new Point(176, 20);
-            txtboxSourceFile.Name = "txtboxSourceFile";
-            txtboxSourceFile.PlaceholderText = "file to upload";
-            txtboxSourceFile.Size = new Size(269, 31);
-            txtboxSourceFile.TabIndex = 5;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(29, 82);
-            label3.Name = "label3";
-            label3.Size = new Size(129, 25);
-            label3.TabIndex = 4;
-            label3.Text = "Remote folder:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(29, 23);
-            label2.Name = "label2";
-            label2.Size = new Size(141, 25);
-            label2.TabIndex = 3;
-            label2.Text = "Local source file:";
-            // 
-            // tabPageDownload
-            // 
-            tabPageDownload.Controls.Add(button1);
-            tabPageDownload.Controls.Add(btnDownloadFile);
-            tabPageDownload.Controls.Add(txtboxLocalDestination);
-            tabPageDownload.Controls.Add(label7);
-            tabPageDownload.Controls.Add(txtboxRemoteSource);
-            tabPageDownload.Controls.Add(label6);
-            tabPageDownload.Location = new Point(4, 34);
-            tabPageDownload.Name = "tabPageDownload";
-            tabPageDownload.Padding = new Padding(3);
-            tabPageDownload.Size = new Size(607, 229);
-            tabPageDownload.TabIndex = 1;
-            tabPageDownload.Text = "Download Files";
-            tabPageDownload.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(451, 83);
-            button1.Name = "button1";
-            button1.Size = new Size(106, 31);
-            button1.TabIndex = 12;
-            button1.Text = "Open";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += OpenDestinationFolderDialog_Click;
-            // 
-            // btnDownloadFile
-            // 
-            btnDownloadFile.Location = new Point(220, 143);
-            btnDownloadFile.Name = "btnDownloadFile";
-            btnDownloadFile.Size = new Size(159, 47);
-            btnDownloadFile.TabIndex = 4;
-            btnDownloadFile.Text = "Download";
-            btnDownloadFile.UseVisualStyleBackColor = true;
-            btnDownloadFile.Click += btnDownloadFile_Click;
-            // 
-            // txtboxLocalDestination
-            // 
-            txtboxLocalDestination.Location = new Point(176, 83);
-            txtboxLocalDestination.Name = "txtboxLocalDestination";
-            txtboxLocalDestination.PlaceholderText = "folder to save to";
-            txtboxLocalDestination.Size = new Size(269, 31);
-            txtboxLocalDestination.TabIndex = 3;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(29, 83);
-            label7.Name = "label7";
-            label7.Size = new Size(108, 25);
-            label7.TabIndex = 2;
-            label7.Text = "Local folder:";
-            // 
-            // txtboxRemoteSource
-            // 
-            txtboxRemoteSource.Location = new Point(176, 25);
-            txtboxRemoteSource.Name = "txtboxRemoteSource";
-            txtboxRemoteSource.PlaceholderText = "this folder shouldn't end with \"\\\"";
-            txtboxRemoteSource.Size = new Size(269, 31);
-            txtboxRemoteSource.TabIndex = 1;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(6, 25);
-            label6.Name = "label6";
-            label6.Size = new Size(134, 25);
-            label6.TabIndex = 0;
-            label6.Text = "Remote source:";
             // 
             // txtboxPassword
             // 
-            txtboxPassword.Location = new Point(192, 78);
+            txtboxPassword.Location = new Point(187, 78);
             txtboxPassword.Name = "txtboxPassword";
             txtboxPassword.PasswordChar = '*';
             txtboxPassword.Size = new Size(269, 31);
@@ -238,7 +53,7 @@
             // 
             // txtboxUsername
             // 
-            txtboxUsername.Location = new Point(192, 24);
+            txtboxUsername.Location = new Point(187, 24);
             txtboxUsername.Name = "txtboxUsername";
             txtboxUsername.Size = new Size(269, 31);
             txtboxUsername.TabIndex = 10;
@@ -246,7 +61,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(45, 78);
+            label5.Location = new Point(90, 78);
             label5.Name = "label5";
             label5.Size = new Size(91, 25);
             label5.TabIndex = 9;
@@ -255,7 +70,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(45, 24);
+            label4.Location = new Point(86, 24);
             label4.Name = "label4";
             label4.Size = new Size(95, 25);
             label4.TabIndex = 8;
@@ -264,7 +79,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(45, 139);
+            label8.Location = new Point(64, 139);
             label8.Name = "label8";
             label8.Size = new Size(117, 25);
             label8.TabIndex = 12;
@@ -272,20 +87,11 @@
             // 
             // txtboxRemoteHost
             // 
-            txtboxRemoteHost.Location = new Point(192, 139);
+            txtboxRemoteHost.Location = new Point(187, 139);
             txtboxRemoteHost.Name = "txtboxRemoteHost";
             txtboxRemoteHost.Size = new Size(269, 31);
             txtboxRemoteHost.TabIndex = 13;
-            // 
-            // btnTestConn
-            // 
-            btnTestConn.Location = new Point(482, 22);
-            btnTestConn.Name = "btnTestConn";
-            btnTestConn.Size = new Size(112, 34);
-            btnTestConn.TabIndex = 14;
-            btnTestConn.Text = "Test";
-            btnTestConn.UseVisualStyleBackColor = true;
-            btnTestConn.Click += btnTestConn_Click;
+            
             // 
             // lblConnStatus
             // 
@@ -295,63 +101,101 @@
             lblConnStatus.Size = new Size(0, 25);
             lblConnStatus.TabIndex = 15;
             // 
+            // btnUploadFiles
+            // 
+            btnUploadFiles.Location = new Point(55, 327);
+            btnUploadFiles.Name = "btnUploadFiles";
+            btnUploadFiles.Size = new Size(194, 54);
+            btnUploadFiles.TabIndex = 16;
+            btnUploadFiles.Text = "Upload Files";
+            btnUploadFiles.UseVisualStyleBackColor = true;
+            btnUploadFiles.Click += btnUploadFiles_Click;
+            // 
+            // btnDownloadFiles
+            // 
+            btnDownloadFiles.Location = new Point(377, 327);
+            btnDownloadFiles.Name = "btnDownloadFiles";
+            btnDownloadFiles.Size = new Size(194, 54);
+            btnDownloadFiles.TabIndex = 17;
+            btnDownloadFiles.Text = "Download Files";
+            btnDownloadFiles.UseVisualStyleBackColor = true;
+            btnDownloadFiles.Click += btnDownloadFiles_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(133, 250);
+            label1.Name = "label1";
+            label1.Size = new Size(48, 25);
+            label1.TabIndex = 18;
+            label1.Text = "Port:";
+            // 
+            // txtPort
+            // 
+            txtPort.Location = new Point(187, 250);
+            txtPort.Name = "txtPort";
+            txtPort.Size = new Size(119, 31);
+            txtPort.TabIndex = 19;
+            txtPort.Text = "22";
+            // 
+            // txtPrivatekeyLocation
+            // 
+            txtPrivatekeyLocation.Location = new Point(187, 195);
+            txtPrivatekeyLocation.Name = "txtPrivatekeyLocation";
+            txtPrivatekeyLocation.Size = new Size(405, 31);
+            txtPrivatekeyLocation.TabIndex = 21;
+            txtPrivatekeyLocation.Text = "Leave blank if none";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(7, 195);
+            label6.Name = "label6";
+            label6.Size = new Size(174, 25);
+            label6.TabIndex = 20;
+            label6.Text = "Private Key Location:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(640, 741);
+            ClientSize = new Size(627, 403);
+            Controls.Add(txtPrivatekeyLocation);
+            Controls.Add(label6);
+            Controls.Add(txtPort);
+            Controls.Add(label1);
+            Controls.Add(btnDownloadFiles);
+            Controls.Add(btnUploadFiles);
             Controls.Add(lblConnStatus);
-            Controls.Add(btnTestConn);
             Controls.Add(txtboxRemoteHost);
             Controls.Add(label8);
             Controls.Add(txtboxPassword);
             Controls.Add(txtboxUsername);
-            Controls.Add(tabControlUI);
             Controls.Add(label5);
-            Controls.Add(txtResult);
             Controls.Add(label4);
-            Controls.Add(label1);
             Margin = new Padding(4);
             MaximizeBox = false;
             Name = "Form1";
             Text = "CyberFinn Simple SFTP client";
-            tabControlUI.ResumeLayout(false);
-            tabPageUpload.ResumeLayout(false);
-            tabPageUpload.PerformLayout();
-            tabPageDownload.ResumeLayout(false);
-            tabPageDownload.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button btnUploadFile;
-        private RichTextBox txtResult;
-        private Label label1;
-        private TabControl tabControlUI;
-        private TabPage tabPageUpload;
-        private TabPage tabPageDownload;
-        private TextBox txtboxRemoteFolder;
-        private TextBox txtboxSourceFile;
-        private Label label3;
-        private Label label2;
-        private Button btnOpenFileDialog;
         private TextBox txtboxPassword;
         private TextBox txtboxUsername;
         private Label label5;
         private Label label4;
-        private TextBox txtboxLocalDestination;
-        private Label label7;
-        private TextBox txtboxRemoteSource;
-        private Label label6;
-        private Button btnDownloadFile;
-        private Button button1;
         private Label label8;
         private TextBox txtboxRemoteHost;
-        private Button btnTestConn;
         private Label lblConnStatus;
+        private Button btnUploadFiles;
+        private Button btnDownloadFiles;
+        private Label label1;
+        private TextBox txtPort;
+        private TextBox txtPrivatekeyLocation;
+        private Label label6;
     }
 }
