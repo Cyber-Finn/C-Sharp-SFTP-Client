@@ -27,7 +27,7 @@ namespace C_Sharp_SFTP_Client
                     return;
                 }
             }
-            MessageBox.Show("Please check that you have selected an item to download, and that all inputs are populated!");
+            MessageBox.Show("Please check that you have selected an item to upload, and that all inputs are populated!");
         }
 
         private string GetSelectedFile()
