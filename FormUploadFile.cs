@@ -17,24 +17,42 @@ namespace C_Sharp_SFTP_Client
 
                 //get the selected file
                 string selectedFilePath = GetSelectedFile();
+                if(!string.IsNullOrEmpty(selectedFilePath))
+                {
+                    //upload the file
+                    Utilities.HandleFileUpload(selectedFilePath);
 
-                //upload the file
-                Utilities.HandleFileUpload(selectedFilePath);
-
-                RefreshView_FilesOnServer();
+                    RefreshView_FilesOnLocal();
+                    RefreshView_FilesOnServer();
+                    return;
+                }
             }
+            MessageBox.Show("Please check that you have selected an item to download, and that all inputs are populated!");
         }
 
         private string GetSelectedFile()
         {
-            //get selected Item
-            ListViewItem selectedItem = Utilities.GetSelectedListViewItem(ref listViewSource);
+            try
+            {
+                //get selected Item
+                ListViewItem selectedItem = Utilities.GetSelectedListViewItem(ref listViewSource);
+                if (selectedItem != null)
+                {
+                    //get name of selected Item
+                    string itemName = selectedItem.Text;
 
-            //get name of selected Item
-            string itemName = selectedItem.Text;
+                    //return the path of the selected file:
+                    return Path.Combine(txtSource.Text, itemName);
+                }
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please select a file to upload to the remote server!");
+                throw;
+            }
+            return string.Empty;
 
-            //return the path of the selected file:
-            return Path.Combine(txtSource.Text, itemName);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
