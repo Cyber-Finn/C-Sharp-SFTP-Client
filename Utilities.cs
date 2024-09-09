@@ -23,12 +23,21 @@ namespace C_Sharp_SFTP_Client
 
         public static void HandleFileUpload(string filePath)
         {
+            HandleRemoteDirectoryNotGiven();
             if (UserInfo._usingPrivateKey)
             {
                 UploadFile_PrivateKey(filePath);
                 return;
             }
             UploadFile(filePath);
+        }
+
+        public static void HandleRemoteDirectoryNotGiven()
+        {
+            if (UserInfo._remoteDirectory == string.Empty)
+            {
+                UserInfo._remoteDirectory = UserInfo._myServer;
+            }
         }
 
         private static void UploadFile(string filePath)
@@ -89,6 +98,7 @@ namespace C_Sharp_SFTP_Client
 
         public static void HandleFileDownload(string filePath)
         {
+            HandleRemoteDirectoryNotGiven();
             if (UserInfo._usingPrivateKey)
             {
                 DownloadFile_PrivateKey(filePath);

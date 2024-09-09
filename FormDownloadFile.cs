@@ -69,12 +69,17 @@ namespace C_Sharp_SFTP_Client
         }
         private void RefreshView_FilesOnServer()
         {
-            if (Utilities.CheckIfInputsOK(txtSource.Text))
+
+            if (!txtSource.Text.Equals(string.Empty))
             {
-                Utilities.ClearListViewItems(ref listViewSource);
-                UserInfo._remoteDirectory = txtSource.Text;
-                Utilities.HandleReadFilenamesFromServer(ref listViewSource);
+                if (Utilities.CheckIfInputsOK(txtSource.Text))
+                {
+                    Utilities.ClearListViewItems(ref listViewSource);
+                    UserInfo._remoteDirectory = txtSource.Text;
+                    Utilities.HandleReadFilenamesFromServer(ref listViewSource);
+                }
             }
+            //rather leave the directory as-is, if they don't have a subfolder on the server, we just use the root       
         }
 
         private void btnRefreshLocal_Click(object sender, EventArgs e)
