@@ -91,7 +91,6 @@
             txtboxRemoteHost.Name = "txtboxRemoteHost";
             txtboxRemoteHost.Size = new Size(269, 31);
             txtboxRemoteHost.TabIndex = 13;
-            
             // 
             // lblConnStatus
             // 
@@ -144,7 +143,7 @@
             txtPrivatekeyLocation.Name = "txtPrivatekeyLocation";
             txtPrivatekeyLocation.Size = new Size(405, 31);
             txtPrivatekeyLocation.TabIndex = 21;
-            txtPrivatekeyLocation.Text = "Leave blank if none";
+            txtPrivatekeyLocation.Text = "Full path and name; Leave blank if none";
             // 
             // label6
             // 

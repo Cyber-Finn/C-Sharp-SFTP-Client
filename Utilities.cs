@@ -9,8 +9,16 @@ namespace C_Sharp_SFTP_Client
     {
         public static void LoadPrivateKeyFile(string privatekeyLoc)
         {
-            UserInfo._privateKey = new PrivateKeyFile(privatekeyLoc);
-            UserInfo._usingPrivateKey = true;
+            try
+            {
+                UserInfo._privateKey = new PrivateKeyFile(privatekeyLoc);
+                UserInfo._usingPrivateKey = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                UserInfo._usingPrivateKey = false;
+            }
         }
 
         public static void HandleFileUpload(string filePath)
@@ -91,9 +99,9 @@ namespace C_Sharp_SFTP_Client
 
         public static void DownloadFile(string filePath)
         {
-            string name = Path.GetFileName(filePath);
             try
             {
+                string name = Path.GetFileName(filePath);
                 //this SftpClient is coming from our Renci dependency
                 using (SftpClient sftp = new SftpClient(UserInfo._myServer, UserInfo._myPort, UserInfo._myUser, UserInfo._myPassword))
                 {
@@ -140,9 +148,9 @@ namespace C_Sharp_SFTP_Client
         }
         public static void DownloadFile_PrivateKey(string filePath)
         {
-            string name = Path.GetFileName(filePath);
             try
             {
+                string name = Path.GetFileName(filePath);
                 //this SftpClient is coming from our Renci dependency
                 using (SftpClient sftp = new SftpClient(UserInfo._myServer, UserInfo._myPort, UserInfo._myUser, UserInfo._privateKey))
                 {
@@ -189,17 +197,31 @@ namespace C_Sharp_SFTP_Client
 
         public static System.Windows.Forms.ListView GetLocalDirListViewItems(string path, ref System.Windows.Forms.ListView listView)
         {
-            setListViewFontAndSize(ref listView);
-
-            // Get all files in the directory
-            string[] files = Directory.GetFiles(path);
-
-            // Add files to the ListView
-            foreach (string file in files)
+            if(path == null || listView == null)
             {
-                listView.Items.Add(new ListViewItem(Path.GetFileName(file)));
+                return null;
             }
-            return listView;
+
+            try
+            {
+                setListViewFontAndSize(ref listView);
+
+                // Get all files in the directory
+                string[] files = Directory.GetFiles(path);
+
+                // Add files to the ListView
+                foreach (string file in files)
+                {
+                    listView.Items.Add(new ListViewItem(Path.GetFileName(file)));
+                }
+                return listView;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return null;
+            
         }
         private static void setListViewFontAndSize(ref System.Windows.Forms.ListView listView)
         {
@@ -214,7 +236,7 @@ namespace C_Sharp_SFTP_Client
         {
             return !string.IsNullOrEmpty(input) ? true : false;
         }
-        public static ListViewItem GetSelectedListViewItem(ref System.Windows.Forms.ListView listViewSource)
+        public static System.Windows.Forms.ListViewItem GetSelectedListViewItem(ref System.Windows.Forms.ListView listViewSource)
         {
             if (listViewSource.SelectedItems.Count > 0)
             {

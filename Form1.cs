@@ -10,7 +10,7 @@ public partial class Form1 : Form
     private void SetUserInfo()
     {
         //if they have some private key file loaded, use it instead of password
-        if(!string.IsNullOrEmpty(txtPrivatekeyLocation.Text) && !txtPrivatekeyLocation.Text.Equals("Leave blank if none"))
+        if(!string.IsNullOrEmpty(txtPrivatekeyLocation.Text) && !txtPrivatekeyLocation.Text.Equals("Full path and name; Leave blank if none"))
         {
             LoadPrivateKey();
         }
