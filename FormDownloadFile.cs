@@ -19,7 +19,7 @@ namespace C_Sharp_SFTP_Client
 
         private void btnDownloadFiles_Click(object sender, EventArgs e)
         {
-            if (Utilities.CheckIfInputsOK(txtSource.Text) && Utilities.CheckIfInputsOK(txtDestination.Text))
+            if (Utilities.CheckIfInputsOK(txtDestination.Text))
             {
                 UserInfo._localDirectory = txtDestination.Text;
 
@@ -35,7 +35,7 @@ namespace C_Sharp_SFTP_Client
                     return;
                 }
             }
-            MessageBox.Show("Please check that you have selected an item to download, and that all inputs are populated!");
+            MessageBox.Show("Please check that you have selected an item to download, and that all necessary inputs are populated!");
         }
 
         private string GetSelectedFile()
@@ -69,17 +69,12 @@ namespace C_Sharp_SFTP_Client
         }
         private void RefreshView_FilesOnServer()
         {
-
-            if (!txtSource.Text.Equals(string.Empty))
+            if (Utilities.CheckIfInputsOK(txtSource.Text))
             {
-                if (Utilities.CheckIfInputsOK(txtSource.Text))
-                {
-                    Utilities.ClearListViewItems(ref listViewSource);
-                    UserInfo._remoteDirectory = txtSource.Text;
-                    Utilities.HandleReadFilenamesFromServer(ref listViewSource);
-                }
+                Utilities.ClearListViewItems(ref listViewSource);
+                UserInfo._remoteDirectory = txtSource.Text;
+                Utilities.HandleReadFilenamesFromServer(ref listViewSource);
             }
-            //rather leave the directory as-is, if they don't have a subfolder on the server, we just use the root       
         }
 
         private void btnRefreshLocal_Click(object sender, EventArgs e)

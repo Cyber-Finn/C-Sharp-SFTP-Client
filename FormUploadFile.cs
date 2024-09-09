@@ -11,7 +11,7 @@ namespace C_Sharp_SFTP_Client
 
         private void btnUploadFiles_Click(object sender, EventArgs e)
         {
-            if (Utilities.CheckIfInputsOK(txtDestination.Text) && Utilities.CheckIfInputsOK(txtSource.Text))
+            if (Utilities.CheckIfInputsOK(txtSource.Text))
             {
                 UserInfo._remoteDirectory = txtDestination.Text;
 
@@ -27,7 +27,7 @@ namespace C_Sharp_SFTP_Client
                     return;
                 }
             }
-            MessageBox.Show("Please check that you have selected an item to upload, and that all inputs are populated!");
+            MessageBox.Show("Please check that you have selected an item to upload, and that all necessary inputs are populated!");
         }
 
         private string GetSelectedFile()
@@ -61,16 +61,11 @@ namespace C_Sharp_SFTP_Client
         }
         private void RefreshView_FilesOnServer()
         {
-            if(!txtDestination.Text.Equals(string.Empty))
+            if (Utilities.CheckIfInputsOK(txtDestination.Text))
             {
-                if (Utilities.CheckIfInputsOK(txtDestination.Text))
-                {
-                    UserInfo._remoteDirectory = txtDestination.Text;
-                    Utilities.HandleReadFilenamesFromServer(ref listViewDestination);
-                }
-                return;
-            }
-            //rather leave the directory as-is, if they don't have a subfolder on the server, we just use the root       
+                UserInfo._remoteDirectory = txtDestination.Text;
+                Utilities.HandleReadFilenamesFromServer(ref listViewDestination);
+            }    
         }
 
         private void btnRefreshLocal_Click(object sender, EventArgs e)
