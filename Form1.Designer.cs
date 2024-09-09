@@ -41,6 +41,7 @@
             txtPort = new TextBox();
             txtPrivatekeyLocation = new TextBox();
             label6 = new Label();
+            btnKeyGen = new Button();
             SuspendLayout();
             // 
             // txtboxPassword
@@ -112,7 +113,7 @@
             // 
             // btnDownloadFiles
             // 
-            btnDownloadFiles.Location = new Point(377, 327);
+            btnDownloadFiles.Location = new Point(255, 327);
             btnDownloadFiles.Name = "btnDownloadFiles";
             btnDownloadFiles.Size = new Size(194, 54);
             btnDownloadFiles.TabIndex = 17;
@@ -154,13 +155,24 @@
             label6.TabIndex = 20;
             label6.Text = "Private Key Location:";
             // 
+            // btnKeyGen
+            // 
+            btnKeyGen.Location = new Point(455, 327);
+            btnKeyGen.Name = "btnKeyGen";
+            btnKeyGen.Size = new Size(194, 54);
+            btnKeyGen.TabIndex = 22;
+            btnKeyGen.Text = "Generate RSA Keys";
+            btnKeyGen.UseVisualStyleBackColor = true;
+            btnKeyGen.Click += btnKeyGen_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(627, 403);
+            ClientSize = new Size(703, 403);
+            Controls.Add(btnKeyGen);
             Controls.Add(txtPrivatekeyLocation);
             Controls.Add(label6);
             Controls.Add(txtPort);
@@ -196,5 +208,6 @@
         private TextBox txtPort;
         private TextBox txtPrivatekeyLocation;
         private Label label6;
+        private Button btnKeyGen;
     }
 }

@@ -6,11 +6,11 @@ public partial class Form1 : Form
     {
         InitializeComponent();
         setFormInfo();
-    } 
+    }
     private void SetUserInfo()
     {
         //if they have some private key file loaded, use it instead of password
-        if(!string.IsNullOrEmpty(txtPrivatekeyLocation.Text) && !txtPrivatekeyLocation.Text.Equals("Full path and name; Leave blank if none"))
+        if (!string.IsNullOrEmpty(txtPrivatekeyLocation.Text) && !txtPrivatekeyLocation.Text.Equals("Full path and name; Leave blank if none"))
         {
             LoadPrivateKey();
         }
@@ -49,6 +49,15 @@ public partial class Form1 : Form
         SetUserInfo();
         FormDownloadFile frmDownloadFiles = new FormDownloadFile();
         frmDownloadFiles.Show();
+        this.Hide();
+    }
+
+    private void btnKeyGen_Click(object sender, EventArgs e)
+    {
+        UserInfo._homeForm = this;
+        SetUserInfo();
+        FormKeyGen formKeyGen = new FormKeyGen();
+        formKeyGen.Show();
         this.Hide();
     }
 }

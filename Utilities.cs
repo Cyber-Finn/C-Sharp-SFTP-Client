@@ -299,7 +299,7 @@ namespace C_Sharp_SFTP_Client
             }
             catch (Exception ex)
             {
-                //txtResult.Text += "\r\n" + ex.Message;
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -328,7 +328,7 @@ namespace C_Sharp_SFTP_Client
             }
             catch (Exception ex)
             {
-                //txtResult.Text += "\r\n" + ex.Message;
+                MessageBox.Show(ex.Message);
             }
 
         }
