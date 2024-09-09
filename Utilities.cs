@@ -271,7 +271,7 @@ namespace C_Sharp_SFTP_Client
                 ReadFilenamesFromServer_PrivateKey(ref listView);
                 return;
             }
-                ReadFilenamesFromServer(ref listView);
+            ReadFilenamesFromServer(ref listView);
         }
 
         private static void ReadFilenamesFromServer(ref System.Windows.Forms.ListView listView)

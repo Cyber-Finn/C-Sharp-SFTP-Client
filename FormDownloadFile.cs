@@ -77,7 +77,7 @@ namespace C_Sharp_SFTP_Client
             }
             else
             {
-                UserInfo._remoteDirectory = UserInfo._myServer;
+                UserInfo._remoteDirectory = "";
             }
 
             Utilities.HandleReadFilenamesFromServer(ref listViewSource);
