@@ -69,12 +69,18 @@ namespace C_Sharp_SFTP_Client
         }
         private void RefreshView_FilesOnServer()
         {
-            if (Utilities.CheckIfInputsOK(txtSource.Text))
+            Utilities.ClearListViewItems(ref listViewSource);
+
+            if (Utilities.CheckIfInputsOK(txtDestination.Text))
             {
-                Utilities.ClearListViewItems(ref listViewSource);
                 UserInfo._remoteDirectory = txtSource.Text;
-                Utilities.HandleReadFilenamesFromServer(ref listViewSource);
             }
+            else
+            {
+                UserInfo._remoteDirectory = UserInfo._myServer;
+            }
+
+            Utilities.HandleReadFilenamesFromServer(ref listViewSource);
         }
 
         private void btnRefreshLocal_Click(object sender, EventArgs e)

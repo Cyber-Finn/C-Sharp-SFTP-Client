@@ -64,8 +64,14 @@ namespace C_Sharp_SFTP_Client
             if (Utilities.CheckIfInputsOK(txtDestination.Text))
             {
                 UserInfo._remoteDirectory = txtDestination.Text;
-                Utilities.HandleReadFilenamesFromServer(ref listViewDestination);
-            }    
+
+            }
+            else
+            {
+                UserInfo._remoteDirectory = UserInfo._myServer;
+            }
+
+            Utilities.HandleReadFilenamesFromServer(ref listViewDestination);
         }
 
         private void btnRefreshLocal_Click(object sender, EventArgs e)
