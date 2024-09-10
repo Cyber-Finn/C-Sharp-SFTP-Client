@@ -71,7 +71,7 @@ namespace C_Sharp_SFTP_Client
         {
             Utilities.ClearListViewItems(ref listViewSource);
 
-            if (Utilities.CheckIfInputsOK(txtDestination.Text))
+            if (Utilities.CheckIfInputsOK(txtSource.Text))
             {
                 UserInfo._remoteDirectory = txtSource.Text;
             }
