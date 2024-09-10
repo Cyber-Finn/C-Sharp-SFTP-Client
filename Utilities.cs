@@ -45,7 +45,10 @@ namespace C_Sharp_SFTP_Client
                     {
                         using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                         {
-                            sftp.UploadFile(fileStream, UserInfo._remoteDirectory + "\\" + name);
+                            if(!string.IsNullOrEmpty(UserInfo._remoteDirectory))
+                                sftp.UploadFile(fileStream, UserInfo._remoteDirectory + "\\" + name);
+                            else
+                                sftp.UploadFile(fileStream, name);
                         }
                         #endregion upload files to remote server
 
@@ -73,7 +76,10 @@ namespace C_Sharp_SFTP_Client
                     {
                         using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
                         {
-                            sftp.UploadFile(fileStream, UserInfo._remoteDirectory + "\\" + name);
+                            if (!string.IsNullOrEmpty(UserInfo._remoteDirectory))
+                                sftp.UploadFile(fileStream, UserInfo._remoteDirectory + "\\" + name);
+                            else
+                                sftp.UploadFile(fileStream, name);
                         }
                         #endregion upload files to remote server
 
@@ -124,8 +130,12 @@ namespace C_Sharp_SFTP_Client
                             }
                             else
                             {
-                                if (remoteFileName.Substring(0, 2) == "./")
+                                if (remoteFileName.Substring(0, 2).Equals("./"))
                                     remoteFileName = remoteFileName.Replace("./", "");
+                                if (remoteFileName.Substring(0, 1).Equals("/"))
+                                    remoteFileName = remoteFileName.Replace("/", "");
+                                if (remoteFileName.Substring(0, 1).Equals("\""))
+                                    remoteFileName = remoteFileName.Replace("\"", "");
 
                                 System.IO.File.Create(UserInfo._localDirectory + "\\"+ remoteFileName).Close();
 
