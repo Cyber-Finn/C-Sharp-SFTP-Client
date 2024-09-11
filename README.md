@@ -14,7 +14,7 @@ Firstly, Your remote server needs to have SFTP and SSH enabled.
 Once that has been set up, you can connect with these steps from Command Prompt or PowerShell:
 1. Windows provides functionality for this via SSH (Secure Shell). Simply open Command Prompt and type in "sftp {username@sftpServerDetails}" and hit enter! (the sftpServerDetails can either be an IP address, or a url, like "ftp.google.com" for example)
 2. Type in your password when prompted
-3. Use "ls" to browse your current remote directory, and "lls" to browse your device's local directory. "cd" and "lcd" work in the same way, respectively, to change directory.
+3. Use "ls" (or "dir") to browse your current remote directory, and "lls" to browse your device's local directory. "cd" and "lcd" work in the same way, respectively, to change directory.
 4. Navigate to the directory you want to upload from (on your local machine) and the directory to download from (on the remote server).
 5. Select a file to upload by running a command similar to "put {myfilename.txt}" - you can also use a wildcard character to upload all files of a given name or type.
-6. Select a file to download by running a command similar to "put {myfilename.txt}" - you can also use a wildcard character to download all files of a given name or type.
+6. Select a file to download by running a command similar to "get {myfilename.txt}" - you can also use a wildcard character to download all files of a given name or type.
